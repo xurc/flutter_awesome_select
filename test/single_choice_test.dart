@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:awesome_select/awesome_select.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import 'choices.dart' as choices;
 
 void main() {
@@ -36,7 +36,7 @@ void main() {
   );
 }
 
-testSmartSelect<T>({
+void testSmartSelect<T>({
   required String title,
   required S2Choice<T>? initialChoice,
   required S2Choice<T> choiceToSelect,
@@ -50,7 +50,7 @@ testSmartSelect<T>({
   testWidgets(title, (WidgetTester tester) async {
     await tester.pumpWidget(
       Bootstrap(
-        child: SmartSelect<T>.single(
+        child: SmartSelect<T?>.single(
           title: title,
           placeholder: placeholder,
           selectedValue: selectedChoice?.value,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:awesome_select/awesome_select.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import '../choices.dart' as choices;
 
 class FeaturesTileOneLine extends StatefulWidget {
@@ -8,15 +8,15 @@ class FeaturesTileOneLine extends StatefulWidget {
 }
 
 class _FeaturesTileOneLineState extends State<FeaturesTileOneLine> {
-  String _day = 'fri';
-  List<String> _month = ['apr'];
+  String? _day = 'fri';
+  List<String>? _month = ['apr'];
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const SizedBox(height: 7),
-        SmartSelect<String>.single(
+        SmartSelect<String?>.single(
           title: 'Days',
           selectedValue: _day,
           choiceItems: choices.days,
@@ -27,7 +27,7 @@ class _FeaturesTileOneLineState extends State<FeaturesTileOneLine> {
           title: 'Month',
           selectedValue: _month,
           choiceItems: choices.months,
-          onChange: (selected) => setState(() => _month = selected.value),
+          onChange: (selected) => setState(() => _month = selected?.value),
           tileBuilder: (context, state) {
             return S2Tile.fromState(state);
           },
