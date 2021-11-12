@@ -1,4 +1,4 @@
-library awesome_select;
+library flutter_awesome_select;
 
 export 'src/widget.dart';
 export 'src/text.dart';

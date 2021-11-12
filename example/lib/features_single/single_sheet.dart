@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:awesome_select/awesome_select.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import '../choices.dart' as choices;
 
 class FeaturesSingleSheet extends StatefulWidget {
@@ -8,15 +8,15 @@ class FeaturesSingleSheet extends StatefulWidget {
 }
 
 class _FeaturesSingleSheetState extends State<FeaturesSingleSheet> {
-  String _os = 'win';
-  String _hero = 'iro';
+  String? _os = 'win';
+  String? _hero = 'iro';
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const SizedBox(height: 7),
-        SmartSelect<String>.single(
+        SmartSelect<String?>.single(
           title: 'OS',
           selectedValue: _os,
           choiceItems: choices.os,
@@ -35,7 +35,7 @@ class _FeaturesSingleSheetState extends State<FeaturesSingleSheet> {
           },
         ),
         const Divider(indent: 20),
-        SmartSelect<String>.single(
+        SmartSelect<String?>.single(
           title: 'Super Hero',
           selectedValue: _hero,
           choiceItems: choices.heroes,

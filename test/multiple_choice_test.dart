@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:awesome_select/awesome_select.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import 'choices.dart' as choices;
 
 void main() {
@@ -32,7 +32,7 @@ void main() {
   );
 }
 
-testSmartSelect<T>({
+void testSmartSelect<T>({
   required String title,
   required List<S2Choice<T>> initialChoice,
   required List<S2Choice<T>> choiceToSelect,

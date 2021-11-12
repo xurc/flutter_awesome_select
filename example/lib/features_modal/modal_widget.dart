@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:awesome_select/awesome_select.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 
 class FeaturesModalWidget extends StatefulWidget {
   @override
@@ -7,8 +7,8 @@ class FeaturesModalWidget extends StatefulWidget {
 }
 
 class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
-  int _question1;
-  List<int> _question2;
+  int? _question1;
+  List<int>? _question2;
 
   List<String> _options1 = [
     'Very Satisfied',
@@ -33,8 +33,9 @@ class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
     return Column(
       children: <Widget>[
         const SizedBox(height: 7),
-        SmartSelect<int>.single(
-          title: 'Overall, how satisfied are you with awesome_select package?',
+        SmartSelect<int?>.single(
+          title:
+              'Overall, how satisfied are you with flutter_awesome_select package?',
           selectedValue: _question1,
           onChange: (selected) {
             setState(() => _question1 = selected.value);
@@ -91,10 +92,10 @@ class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
         ),
         SmartSelect<int>.multiple(
           title:
-              'Which of following words would you use to describe awesome_select?',
+              'Which of following words would you use to describe flutter_awesome_select?',
           selectedValue: _question2,
           onChange: (selected) {
-            setState(() => _question2 = selected.value);
+            setState(() => _question2 = selected?.value);
           },
           choiceItems: S2Choice.listFrom<int, String>(
             source: _options2,
@@ -118,7 +119,7 @@ class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
           modalConfirm: true,
           modalType: S2ModalType.bottomSheet,
           modalValidation: (value) {
-            return value.length > 0 ? null : 'Select at least one';
+            return value.length > 0 ? '' : 'Select at least one';
           },
           modalHeaderBuilder: (context, state) {
             return Container(
@@ -132,10 +133,10 @@ class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
               child: ButtonTheme(
                 minWidth: double.infinity,
                 child: FlatButton(
-                  child: Text('Submit (${state.selection.length})'),
+                  child: Text('Submit (${state.selection?.length})'),
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
-                  onPressed: state.selection.isValid
+                  onPressed: (state.selection?.isValid ?? true)
                       ? () => state.closeModal(confirmed: true)
                       : null,
                 ),
@@ -167,9 +168,9 @@ class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
                     ),
                   ),
                   body: S2TileChips(
-                    chipLength: state.selected.length,
+                    chipLength: state.selected?.length ?? 0,
                     chipLabelBuilder: (context, i) {
-                      return Text(state.selected.choice[i].title);
+                      return Text(state.selected?.choice?[i].title ?? '');
                     },
                     chipColor: Theme.of(context).primaryColor,
                     chipRaised: true,

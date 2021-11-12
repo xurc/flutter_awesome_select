@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:awesome_select/awesome_select.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 
 class FeaturesOptionDisabled extends StatefulWidget {
   @override
@@ -7,9 +7,9 @@ class FeaturesOptionDisabled extends StatefulWidget {
 }
 
 class _FeaturesOptionDisabledState extends State<FeaturesOptionDisabled> {
-  List<int> _categories = [];
+  List<int>? _categories = [];
 
-  int _sort = 0;
+  int? _sort = 0;
 
   List<String> _categoriesOption = [
     'Electronics',
@@ -46,7 +46,7 @@ class _FeaturesOptionDisabledState extends State<FeaturesOptionDisabled> {
                   title: 'Categories',
                   selectedValue: _categories,
                   onChange: (selected) {
-                    setState(() => _categories = selected.value);
+                    setState(() => _categories = selected?.value);
                   },
                   choiceItems: S2Choice.listFrom<int, String>(
                     source: _categoriesOption,
@@ -71,7 +71,7 @@ class _FeaturesOptionDisabledState extends State<FeaturesOptionDisabled> {
                 child: VerticalDivider(),
               ),
               Expanded(
-                child: SmartSelect<int>.single(
+                child: SmartSelect<int?>.single(
                   selectedValue: _sort,
                   onChange: (selected) {
                     setState(() => _sort = selected.value);

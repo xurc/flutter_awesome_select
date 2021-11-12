@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:awesome_select/awesome_select.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import '../choices.dart' as choices;
 
 class FeaturesMultiPage extends StatefulWidget {
@@ -8,8 +8,8 @@ class FeaturesMultiPage extends StatefulWidget {
 }
 
 class _FeaturesMultiPageState extends State<FeaturesMultiPage> {
-  List<String> _day = ['fri'];
-  List<String> _month = ['apr'];
+  List<String>? _day = ['fri'];
+  List<String>? _month = ['apr'];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class _FeaturesMultiPageState extends State<FeaturesMultiPage> {
           title: 'Days',
           selectedValue: _day,
           choiceItems: choices.days,
-          onChange: (selected) => setState(() => _day = selected.value),
+          onChange: (selected) => setState(() => _day = selected?.value),
         ),
         const Divider(indent: 20),
         SmartSelect<String>.multiple(
@@ -28,7 +28,7 @@ class _FeaturesMultiPageState extends State<FeaturesMultiPage> {
           selectedValue: _month,
           choiceItems: choices.months,
           modalType: S2ModalType.fullPage,
-          onChange: (selected) => setState(() => _month = selected.value),
+          onChange: (selected) => setState(() => _month = selected?.value),
         ),
         const SizedBox(height: 7),
       ],
