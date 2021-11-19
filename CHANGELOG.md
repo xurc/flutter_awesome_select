@@ -1,3 +1,6 @@
+## [6.0.1]
+* bugfix for https://github.com/artflutter/flutter_awesome_select/issues/2
+ 
 ## [6.0.0]
 * Null safety proper migration.
  

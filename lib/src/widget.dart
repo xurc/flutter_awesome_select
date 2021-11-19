@@ -1,5 +1,6 @@
 import 'dart:ui';
-import 'package:collection/collection.dart' show IterableExtension;
+import 'package:collection/collection.dart'
+    show IterableExtension, ListEquality;
 import 'package:flutter/material.dart';
 import 'model/builder.dart';
 import 'model/modal_theme.dart';
@@ -1683,8 +1684,8 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
   void didUpdateWidget(SmartSelect<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    // reset the initial choices
-    if (oldWidget.choiceItems != widget.choiceItems) resolveChoices();
+    if (!ListEquality().equals(oldWidget.choiceItems, widget.choiceItems))
+      resolveChoices();
   }
 
   @override
@@ -1787,7 +1788,7 @@ class S2SingleState<T> extends S2State<T> {
     super.didUpdateWidget(oldWidget);
 
     // reset the initial value
-    // if (oldWidget.singleSelected != widget.singleSelected) resolveSelected();
+    if (oldWidget.singleSelected != widget.singleSelected) resolveSelected();
   }
 
   @override
@@ -1994,7 +1995,7 @@ class S2MultiState<T> extends S2State<T> {
     super.didUpdateWidget(oldWidget);
 
     // reset the initial value
-    // if (oldWidget.multiSelected != widget.multiSelected) resolveSelected();
+    if (oldWidget.multiSelected != widget.multiSelected) resolveSelected();
   }
 
   @override
