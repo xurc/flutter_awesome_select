@@ -41,7 +41,7 @@ void testSmartSelect<T>({
   S2ChoiceType? choiceType,
   String placeholder = 'Select one or more',
 }) {
-  List<S2Choice<T>>? selectedChoice = initialChoice;
+  List<S2Choice<T>> selectedChoice = initialChoice;
 
   testWidgets(title, (WidgetTester tester) async {
     await tester.pumpWidget(
@@ -49,11 +49,11 @@ void testSmartSelect<T>({
         child: SmartSelect<T>.multiple(
           title: title,
           placeholder: placeholder,
-          selectedValue: selectedChoice?.map((e) => e.value).toList(),
+          selectedValue: selectedChoice.map((e) => e.value).toList(),
           choiceItems: choiceItems,
           modalType: modalType,
           choiceType: choiceType,
-          onChange: (selected) => selectedChoice = selected!.choice,
+          onChange: (selected) => selectedChoice = selected.choice ?? [],
         ),
       ),
     );
@@ -70,12 +70,12 @@ void testSmartSelect<T>({
 
     final s2State = tester.state<S2MultiState<T>>(s2Finder);
     expect(
-      s2State.selected!.choice,
+      s2State.selected.choice,
       initialChoice,
       reason: 'Initial choice is correct',
     );
     expect(
-      s2State.selected!.value,
+      s2State.selected.value,
       initialChoice.map((e) => e.value).toList(),
       reason: 'Initial value is correct',
     );
@@ -172,7 +172,7 @@ void testSmartSelect<T>({
     await tester.pumpAndSettle();
 
     expect(
-      s2State.selected!.choice,
+      s2State.selected.choice,
       choiceToSelect,
       reason: 'New selected choice to internal choice is correct',
     );
@@ -183,12 +183,12 @@ void testSmartSelect<T>({
     );
 
     expect(
-      s2State.selected!.value,
+      s2State.selected.value,
       choiceToSelect.map((e) => e.value).toList(),
       reason: 'New selected value to internal value is correct',
     );
     expect(
-      selectedChoice?.map((e) => e.value).toList(),
+      selectedChoice.map((e) => e.value).toList(),
       choiceToSelect.map((e) => e.value).toList(),
       reason: 'New selected value to external value is correct',
     );

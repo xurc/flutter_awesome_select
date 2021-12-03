@@ -13,11 +13,11 @@ class _FeaturesOptionAsyncState extends State<FeaturesOptionAsync> {
   List<S2Choice<String>> _users = [];
   bool? _usersIsLoading;
 
-  List<String>? _countries;
+  List<String> _countries = [];
   final _countriesMemoizer = AsyncMemoizer<List<S2Choice<String>>>();
 
-  List<String>? _invitations;
-  List<String>? _breeds;
+  List<String> _invitations = [];
+  List<String> _breeds = [];
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class _FeaturesOptionAsyncState extends State<FeaturesOptionAsync> {
               choiceGrouped: true,
               choiceType: S2ChoiceType.checkboxes,
               onChange: (selected) {
-                setState(() => _countries = selected?.value);
+                setState(() => _countries = selected.value);
               },
               tileBuilder: (context, state) {
                 return S2Tile.fromState(
@@ -123,13 +123,13 @@ class _FeaturesOptionAsyncState extends State<FeaturesOptionAsync> {
             );
           },
           onChange: (selected) {
-            setState(() => _invitations = selected?.value);
+            setState(() => _invitations = selected.value);
           },
           tileBuilder: (context, state) {
             return S2Tile.fromState(
               state,
               isTwoLine: true,
-              isLoading: state.selected?.isResolving,
+              isLoading: state.selected.isResolving,
               leading: const SizedBox(
                 width: 40,
                 height: 40,
@@ -166,16 +166,16 @@ class _FeaturesOptionAsyncState extends State<FeaturesOptionAsync> {
             );
           },
           onChange: (selected) {
-            setState(() => _invitations = selected?.value);
+            setState(() => _invitations = selected.value);
           },
           tileBuilder: (context, state) {
             return S2Tile.fromState(
               state,
               isTwoLine: true,
-              isLoading: state.selected?.isResolving,
+              isLoading: state.selected.isResolving,
               leading: CircleAvatar(
                 backgroundColor: state.theme.primaryColor,
-                child: Text((state.selected?.length ?? 0).toString()),
+                child: Text((state.selected.length).toString()),
               ),
             );
           },

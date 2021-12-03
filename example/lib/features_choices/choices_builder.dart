@@ -11,7 +11,7 @@ class FeaturesChoicesBuilder extends StatefulWidget {
 class _FeaturesChoicesBuilderState extends State<FeaturesChoicesBuilder> {
   int? _commute;
 
-  List<String>? _user;
+  List<String> _user = [];
   List<S2Choice<String>> _users = [];
   bool _usersIsLoading = false;
 
@@ -89,8 +89,8 @@ class _FeaturesChoicesBuilderState extends State<FeaturesChoicesBuilder> {
         const Divider(indent: 20),
         SmartSelect<String>.multiple(
           title: 'Passengers',
-          selectedValue: _user,
-          onChange: (selected) => setState(() => _user = selected?.value),
+          // selectedValue: _user,
+          onChange: (selected) => setState(() => _user = selected.value),
           modalFilter: true,
           choiceItems: _users,
           choiceGrouped: true,
@@ -146,23 +146,22 @@ class _FeaturesChoicesBuilderState extends State<FeaturesChoicesBuilder> {
               leading: CircleAvatar(
                 backgroundColor: theme.primaryColor,
                 child: Text(
-                  state.selected?.value?.length.toString() ?? '0',
+                  state.selected.value.length.toString(),
                   style: TextStyle(color: Colors.white),
                 ),
               ),
               body: S2TileChips(
-                chipLength: state.selected?.length ?? 0,
+                chipLength: state.selected.length,
                 chipLabelBuilder: (context, i) {
-                  return Text(state.selected?.choice?[i].title ?? '');
+                  return Text(state.selected.choice?[i].title ?? '');
                 },
                 chipAvatarBuilder: (context, i) => CircleAvatar(
                   backgroundImage: NetworkImage(
-                    state.selected?.choice?[i].meta['picture']['thumbnail'],
+                    state.selected.choice?[i].meta['picture']['thumbnail'],
                   ),
                 ),
                 chipOnDelete: (i) {
-                  setState(
-                      () => _user?.remove(state.selected?.choice?[i].value));
+                  setState(() => _user.remove(state.selected.choice?[i].value));
                 },
                 chipColor: Theme.of(context).primaryColor,
                 chipRaised: true,

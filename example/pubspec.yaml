@@ -25,7 +25,7 @@ dependencies:
     sdk: flutter
   flutter_awesome_select:
     path: ../
-#  theme_patrol: ^0.0.1
+  theme_patrol2: ^0.0.1
   dio: ^4.0.1
   sticky_headers: ^0.2.0
 

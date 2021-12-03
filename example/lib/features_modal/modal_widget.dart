@@ -8,7 +8,7 @@ class FeaturesModalWidget extends StatefulWidget {
 
 class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
   int? _question1;
-  List<int>? _question2;
+  List<int> _question2 = [];
 
   List<String> _options1 = [
     'Very Satisfied',
@@ -95,7 +95,7 @@ class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
               'Which of following words would you use to describe flutter_awesome_select?',
           selectedValue: _question2,
           onChange: (selected) {
-            setState(() => _question2 = selected?.value);
+            setState(() => _question2 = selected.value);
           },
           choiceItems: S2Choice.listFrom<int, String>(
             source: _options2,
@@ -168,9 +168,9 @@ class _FeaturesModalWidgetState extends State<FeaturesModalWidget> {
                     ),
                   ),
                   body: S2TileChips(
-                    chipLength: state.selected?.length ?? 0,
+                    chipLength: state.selected.length,
                     chipLabelBuilder: (context, i) {
-                      return Text(state.selected?.choice?[i].title ?? '');
+                      return Text(state.selected.choice?[i].title ?? '');
                     },
                     chipColor: Theme.of(context).primaryColor,
                     chipRaised: true,

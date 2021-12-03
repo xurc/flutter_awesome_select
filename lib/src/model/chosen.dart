@@ -55,7 +55,7 @@ abstract class S2ChosenData<T> {
 mixin S2SingleChosenData<T> on S2ChosenData<T> {
   /// Returns [choice.value]
   @override
-  T? get value {
+  T get value {
     return choice?.value;
   }
 
@@ -301,7 +301,7 @@ class S2SingleSelected<T> extends S2Selected<T> with S2SingleChosenData<T> {
 
   /// A function used to validate the selection
   @override
-  final S2Validation<S2SingleChosen<T?>>? validation;
+  final S2Validation<S2SingleChosen<T>>? validation;
 
   @override
   void validate() {
@@ -374,15 +374,15 @@ class S2SingleSelected<T> extends S2Selected<T> with S2SingleChosenData<T> {
 class S2MultiSelected<T> extends S2Selected<T> with S2MultiChosenData<T> {
   /// Default Constructor
   S2MultiSelected({
-    List<T>? value,
+    List<T> value = const [],
     List<S2Choice<T>>? choice,
     this.resolver,
     this.validation,
     this.placeholder,
-  })  : _value = List<T>.from(value ?? []),
+  })  : _value = List<T>.from(value),
         _choice = choice != null ? List<S2Choice<T>>.from(choice) : null;
 
-  List<T>? _value;
+  List<T> _value;
 
   List<S2Choice<T>>? _choice;
 
@@ -426,7 +426,7 @@ class S2MultiSelected<T> extends S2Selected<T> with S2MultiChosenData<T> {
   @override
   set choice(List<S2Choice<T>>? choices) {
     _choice = List<S2Choice<T>>.from(choices ?? []);
-    _value = null;
+    _value = [];
     validate();
   }
 
@@ -445,7 +445,7 @@ class S2MultiSelected<T> extends S2Selected<T> with S2MultiChosenData<T> {
 
   /// return an array of `value` of the selected [choice]
   @override
-  List<T>? get value {
+  List<T> get value {
     return isNotEmpty
         ? choice!.map((S2Choice<T> item) => item.value).toList()
         : _value;

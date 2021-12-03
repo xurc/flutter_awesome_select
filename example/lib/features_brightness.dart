@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_select/flutter_awesome_select.dart';
-// import 'package:theme_patrol/theme_patrol.dart';
+import 'package:theme_patrol2/theme_patrol2.dart';
 
 class FeaturesBrightness extends StatefulWidget {
   @override
@@ -18,39 +18,39 @@ class _FeaturesBrightnessState extends State<FeaturesBrightness> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
-    // return SmartSelect<int>.single(
-    //   title: 'Brightness',
-    //   selectedValue: ThemePatrol.of(context).themeMode.index,
-    //   onChange: (selected) {
-    //     ThemePatrol.of(context).setMode(ThemeMode.values[selected.value]);
-    //   },
-    //   modalType: S2ModalType.bottomSheet,
-    //   modalHeader: false,
-    //   choiceItems: modes,
-    //   choiceConfig: const S2ChoiceConfig(
-    //     type: S2ChoiceType.cards,
-    //     layout: S2ChoiceLayout.grid,
-    //     gridCount: 3,
-    //     gridSpacing: 5,
-    //   ),
-    //   choiceStyle: S2ChoiceStyle(spacing: 7),
-    //   choiceActiveStyle: S2ChoiceStyle(
-    //     titleStyle: TextStyle(color: Colors.white),
-    //   ),
-    //   choiceSecondaryBuilder: (context, state, choice) {
-    //     return Icon(
-    //       choice.meta,
-    //       size: 48,
-    //       color: choice.selected ? Colors.white : null,
-    //     );
-    //   },
-    //   tileBuilder: (context, state) {
-    //     return IconButton(
-    //       icon: Icon(modes[state.selected.value].meta),
-    //       onPressed: state.showModal,
-    //     );
-    //   },
-    // );
+    return SmartSelect<int>.single(
+      title: 'Brightness',
+      selectedValue:
+          ThemePatrol.of(context)?.themeMode?.index ?? ThemeMode.system.index,
+      onChange: (selected) {
+        ThemePatrol.of(context)?.setMode(ThemeMode.values[selected.value]);
+      },
+      modalType: S2ModalType.bottomSheet,
+      modalHeader: false,
+      choiceItems: modes,
+      choiceConfig: const S2ChoiceConfig(
+        type: S2ChoiceType.cards,
+        layout: S2ChoiceLayout.grid,
+        gridCount: 3,
+        gridSpacing: 5,
+      ),
+      choiceStyle: S2ChoiceStyle(spacing: 7),
+      choiceActiveStyle: S2ChoiceStyle(
+        titleStyle: TextStyle(color: Colors.white),
+      ),
+      choiceSecondaryBuilder: (context, state, choice) {
+        return Icon(
+          choice.meta,
+          size: 48,
+          color: choice.selected ? Colors.white : null,
+        );
+      },
+      tileBuilder: (context, state) {
+        return IconButton(
+          icon: Icon(modes[state.selected?.value ?? 0].meta),
+          onPressed: state.showModal,
+        );
+      },
+    );
   }
 }

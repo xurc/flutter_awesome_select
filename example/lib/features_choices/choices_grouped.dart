@@ -10,7 +10,7 @@ class FeaturesChoicesGrouped extends StatefulWidget {
 
 class _FeaturesChoicesGroupedState extends State<FeaturesChoicesGrouped> {
   String? _smartphone;
-  List<String>? _car;
+  List<String> _car = [];
 
   Color get primaryColor => Theme.of(context).primaryColor;
 
@@ -54,7 +54,7 @@ class _FeaturesChoicesGroupedState extends State<FeaturesChoicesGrouped> {
           title: 'Cars',
           placeholder: 'Choose one or more',
           selectedValue: _car,
-          onChange: (selected) => setState(() => _car = selected?.value),
+          onChange: (selected) => setState(() => _car = selected.value),
           choiceItems: S2Choice.listFrom<String, Map<String, String>>(
             source: choices.cars,
             value: (index, item) => item['value'] ?? '',

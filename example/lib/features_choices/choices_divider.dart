@@ -9,7 +9,7 @@ class FeaturesChoicesDivider extends StatefulWidget {
 
 class _FeaturesChoicesDividerState extends State<FeaturesChoicesDivider> {
   String? _car;
-  List<String>? _smartphone = [];
+  List<String> _smartphone = [];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _FeaturesChoicesDividerState extends State<FeaturesChoicesDivider> {
           placeholder: 'Choose one',
           selectedValue: _smartphone,
           onChange: (selected) {
-            setState(() => _smartphone = selected?.value);
+            setState(() => _smartphone = selected.value);
           },
           choiceItems: S2Choice.listFrom<String, Map<String, String>>(
             source: choices.smartphones,

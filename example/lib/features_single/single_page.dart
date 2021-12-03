@@ -19,8 +19,12 @@ class _FeaturesSinglePageState extends State<FeaturesSinglePage> {
         SmartSelect<String?>.single(
           title: 'Days',
           selectedValue: _day,
+          // selectedValue: _day,
           choiceItems: choices.days,
-          onChange: (selected) => setState(() => _day = selected.value),
+          onChange: (selected) {
+            print(selected);
+            setState(() => _day = selected.value);
+          },
         ),
         const Divider(indent: 20),
         SmartSelect<String?>.single(

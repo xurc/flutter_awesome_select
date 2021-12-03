@@ -1,6 +1,5 @@
 import 'package:flutter_awesome_select/flutter_awesome_select.dart'
     show S2Choice;
-import 'package:flutter/semantics.dart';
 
 List<S2Choice<String>> days = [
   S2Choice<String>(value: 'mon', title: 'Monday'),

@@ -10,8 +10,8 @@ class FeaturesModalValidation extends StatefulWidget {
 
 class _FeaturesModalValidationState extends State<FeaturesModalValidation> {
   String? _day;
-  List<String>? _days = ['fri'];
-  List<String>? _fruit;
+  List<String> _days = ['fri'];
+  List<String> _fruit = [];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _FeaturesModalValidationState extends State<FeaturesModalValidation> {
         SmartSelect<String>.multiple(
           title: 'Days',
           selectedValue: _days,
-          onChange: (selected) => setState(() => _days = selected?.value),
+          onChange: (selected) => setState(() => _days = selected.value),
           choiceItems: choices.days,
           modalType: S2ModalType.bottomSheet,
           modalValidation: (chosen) {
@@ -53,7 +53,7 @@ class _FeaturesModalValidationState extends State<FeaturesModalValidation> {
           tileBuilder: (context, state) {
             return S2Tile<dynamic>(
               title: state.titleWidget,
-              value: state.selected?.toWidget() ?? Container(),
+              value: state.selected.toWidget(),
               onTap: state.showModal,
               isTwoLine: true,
               leading: const CircleAvatar(
@@ -68,7 +68,7 @@ class _FeaturesModalValidationState extends State<FeaturesModalValidation> {
         SmartSelect<String>.multiple(
           title: 'Fruit',
           selectedValue: _fruit,
-          onChange: (selected) => setState(() => _fruit = selected?.value),
+          onChange: (selected) => setState(() => _fruit = selected.value),
           choiceItems: choices.fruits,
           modalType: S2ModalType.popupDialog,
           modalConfirm: true,

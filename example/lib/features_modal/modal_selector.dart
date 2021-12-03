@@ -8,9 +8,9 @@ class FeaturesModalSelector extends StatefulWidget {
 }
 
 class _FeaturesModalSelectorState extends State<FeaturesModalSelector> {
-  List<String>? _fruit = ['mel'];
-  List<String>? _smartphone = [];
-  List<String>? _car = [];
+  List<String> _fruit = ['mel'];
+  List<String> _smartphone = [];
+  List<String> _car = [];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class _FeaturesModalSelectorState extends State<FeaturesModalSelector> {
           title: 'Fruit',
           selectedValue: _fruit,
           onChange: (selected) {
-            setState(() => _fruit = selected?.value);
+            setState(() => _fruit = selected.value);
           },
           choiceItems: choices.fruits,
           modalType: S2ModalType.popupDialog,
@@ -87,7 +87,7 @@ class _FeaturesModalSelectorState extends State<FeaturesModalSelector> {
           placeholder: 'Choose one',
           selectedValue: _smartphone,
           onChange: (selected) {
-            setState(() => _smartphone = selected?.value);
+            setState(() => _smartphone = selected.value);
           },
           choiceItems: S2Choice.listFrom<String, Map<String, String>>(
             source: choices.smartphones,
@@ -156,13 +156,13 @@ class _FeaturesModalSelectorState extends State<FeaturesModalSelector> {
               ),
               body: S2TileChips(
                 chipColor: Theme.of(context).primaryColor,
-                chipLength: state.selected?.length ?? 0,
+                chipLength: state.selected.length,
                 chipLabelBuilder: (context, i) {
-                  return Text(state.selected?.choice?[i].title ?? '');
+                  return Text(state.selected.choice?[i].title ?? '');
                 },
                 chipOnDelete: (i) {
                   setState(() {
-                    _smartphone?.remove(state.selected?.choice?[i].value);
+                    _smartphone.remove(state.selected.choice?[i].value);
                   });
                 },
                 // placeholder: Container(),
@@ -174,7 +174,7 @@ class _FeaturesModalSelectorState extends State<FeaturesModalSelector> {
         SmartSelect<String>.multiple(
           title: 'Car',
           selectedValue: _car,
-          onChange: (selected) => setState(() => _car = selected?.value),
+          onChange: (selected) => setState(() => _car = selected.value),
           choiceItems: S2Choice.listFrom<String, Map<String, String>>(
             source: choices.cars,
             value: (index, item) => item['value'] ?? '',

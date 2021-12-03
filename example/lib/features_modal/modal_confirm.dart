@@ -8,8 +8,8 @@ class FeaturesModalConfirm extends StatefulWidget {
 }
 
 class _FeaturesModalConfirmState extends State<FeaturesModalConfirm> {
-  List<String>? _day = ['fri'];
-  List<String>? _fruit = ['mel'];
+  List<String> _day = ['fri'];
+  List<String> _fruit = ['mel'];
   String? _hero = 'iro';
 
   @override
@@ -20,14 +20,14 @@ class _FeaturesModalConfirmState extends State<FeaturesModalConfirm> {
         SmartSelect<String>.multiple(
           title: 'Days',
           selectedValue: _day,
-          onChange: (selected) => setState(() => _day = selected?.value),
+          onChange: (selected) => setState(() => _day = selected.value),
           choiceItems: choices.days,
           modalType: S2ModalType.fullPage,
           modalConfirm: true,
           tileBuilder: (context, state) {
             return S2Tile<dynamic>(
               title: state.titleWidget,
-              value: state.selected?.toWidget() ?? Container(),
+              value: state.selected.toWidget(),
               onTap: state.showModal,
               isTwoLine: true,
               leading: const CircleAvatar(
@@ -42,7 +42,7 @@ class _FeaturesModalConfirmState extends State<FeaturesModalConfirm> {
         SmartSelect<String>.multiple(
           title: 'Fruit',
           selectedValue: _fruit,
-          onChange: (selected) => setState(() => _fruit = selected?.value),
+          onChange: (selected) => setState(() => _fruit = selected.value),
           choiceItems: choices.fruits,
           modalType: S2ModalType.popupDialog,
           modalConfirm: true,

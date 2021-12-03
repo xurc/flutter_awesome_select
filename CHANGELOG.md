@@ -1,3 +1,6 @@
+## [6.1.0-beta]
+* fix of nullsafety. mooving to beta statge until covering the functionality with tests
+ 
 ## [6.0.1]
 * bugfix for https://github.com/artflutter/flutter_awesome_select/issues/2
  
