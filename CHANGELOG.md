@@ -1,3 +1,6 @@
+## [6.1.1-beta]
+* expose more classes
+ 
 ## [6.1.0-beta]
 * fix of nullsafety. mooving to beta statge until covering the functionality with tests
  

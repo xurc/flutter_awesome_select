@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_awesome_select/flutter_awesome_select.dart';
-import 'package:flutter_awesome_select/src/state/selection.dart';
 
 void main() {
   group('Single Choice', () {
