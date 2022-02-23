@@ -58,39 +58,39 @@ class S2ChipTheme extends StatelessWidget {
     final Brightness brightness = Theme.of(context).brightness;
     final bool isDark = brightness == Brightness.dark;
 
-    final Color primaryColor = color ??
+    final Color? primaryColor = color ??
         (!isDark
             ? Theme.of(context).unselectedWidgetColor
             : ChipTheme.of(context).backgroundColor);
-    final Color backgroundColor = raised == true
+    final Color? backgroundColor = raised == true
         ? primaryColor
         : outlined == true
             ? Colors.transparent
-            : primaryColor.withOpacity(opacity ?? backgroundAlpha);
-    final Color disabledColor = primaryColor.withAlpha(disabledAlpha);
+            : primaryColor?.withOpacity(opacity ?? backgroundAlpha);
+    final Color? disabledColor = primaryColor?.withAlpha(disabledAlpha);
 
-    final Color secondaryColor = color ?? Theme.of(context).primaryColor;
-    final Color selectedColor = raised == true
+    final Color? secondaryColor = color ?? Theme.of(context).primaryColor;
+    final Color? selectedColor = raised == true
         ? secondaryColor
         : outlined == true
             ? Colors.transparent
-            : secondaryColor.withOpacity(opacity ?? backgroundAlpha);
+            : secondaryColor?.withOpacity(opacity ?? backgroundAlpha);
 
-    final Color foregroundColor = raised == true
+    final Color? foregroundColor = raised == true
         ? Colors.white
         : selected == true
-            ? secondaryColor.withAlpha(foregroundAlpha)
-            : primaryColor.withAlpha(foregroundAlpha);
+            ? secondaryColor?.withAlpha(foregroundAlpha)
+            : primaryColor?.withAlpha(foregroundAlpha);
 
-    final TextStyle defaultLabelStyle = ChipTheme.of(context).labelStyle;
+    final TextStyle? defaultLabelStyle = ChipTheme.of(context).labelStyle;
     final TextStyle primaryLabelStyle =
-        defaultLabelStyle.merge(labelStyle).copyWith(color: foregroundColor);
+        defaultLabelStyle!.merge(labelStyle).copyWith(color: foregroundColor);
     final TextStyle selectedLabelStyle = defaultLabelStyle
         .merge(labelStyle)
         .copyWith(
             color: raised == true
                 ? Colors.white
-                : secondaryColor.withAlpha(foregroundAlpha));
+                : secondaryColor?.withAlpha(foregroundAlpha));
 
     final ShapeBorder? chipShapeRaised =
         raised == true ? StadiumBorder() : null;
@@ -98,8 +98,8 @@ class S2ChipTheme extends StatelessWidget {
         ? StadiumBorder(
             side: BorderSide(
               color: selected == true
-                  ? secondaryColor.withOpacity(opacity ?? borderAlpha)
-                  : primaryColor.withOpacity(opacity ?? borderAlpha),
+                  ? secondaryColor!.withOpacity(opacity ?? borderAlpha)
+                  : primaryColor!.withOpacity(opacity ?? borderAlpha),
             ),
           )
         : null;
