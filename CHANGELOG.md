@@ -1,3 +1,6 @@
+## [6.1.2-beta]
+* expose more classes
+
 ## [6.1.1-beta]
 * expose more classes
  

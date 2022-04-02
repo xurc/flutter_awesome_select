@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:collection/collection.dart'
     show IterableExtension, ListEquality;
 import 'package:flutter/material.dart';
