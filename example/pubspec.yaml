@@ -25,9 +25,9 @@ dependencies:
     sdk: flutter
   flutter_awesome_select:
     path: ../
-  theme_patrol2: ^0.0.1
-  dio: ^4.0.1
-  sticky_headers: ^0.2.0
+  theme_patrol2: ^0.1.0
+  dio: ^4.0.6
+  sticky_headers: ^0.3.0+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

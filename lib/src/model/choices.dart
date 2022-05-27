@@ -8,7 +8,7 @@ class S2Choices<T> {
   final List<S2Choice<T>> items;
 
   /// current filter query
-  final String query;
+  final String? query;
 
   /// configuration of group widget
   final S2GroupConfig groupConfig;
@@ -22,20 +22,15 @@ class S2Choices<T> {
 
   /// return a filtered list of options
   List<S2Choice<T>> get filteredItems {
-    return query != null
-        ? nonHiddenItems
-            .where((S2Choice<T> item) => item.contains(query))
-            .toList()
-            .cast<S2Choice<T>>()
+    final _query = query;
+    return _query != null
+        ? nonHiddenItems.where((S2Choice<T> item) => item.contains(_query)).toList().cast<S2Choice<T>>()
         : nonHiddenItems;
   }
 
   /// return a non hidden option item
   List<S2Choice<T>> get nonHiddenItems {
-    return items
-        .where((S2Choice<T> item) => item.hidden != true)
-        .toList()
-        .cast<S2Choice<T>>();
+    return items.where((S2Choice<T> item) => item.hidden != true).toList().cast<S2Choice<T>>();
   }
 
   /// return a list of group
@@ -50,26 +45,19 @@ class S2Choices<T> {
         .cast<S2Group<T>>();
 
     // sort the list when the comparator is provided
-    if (groupConfig.sortBy != null)
-      return groups..sort(groupConfig.sortBy!.compare);
+    if (groupConfig.sortBy != null) return groups..sort(groupConfig.sortBy!.compare);
 
     return groups;
   }
 
   /// return a unique list of group keys
   List<String> get groupKeys {
-    return filteredItems
-        .map((S2Choice<T> item) => item.group)
-        .toSet()
-        .toList()
-        .cast<String>();
+    return filteredItems.map((S2Choice<T> item) => item.group).toSet().toList().cast<String>();
   }
 
   /// return a list of group items
   List<S2Choice<T>> groupItems(String key) {
-    return filteredItems
-        .where((S2Choice<T> item) => item.group == key)
-        .toList();
+    return filteredItems.where((S2Choice<T> item) => item.group == key).toList();
   }
 
   /// whether the list need to be grouped or not

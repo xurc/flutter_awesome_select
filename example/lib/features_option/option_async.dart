@@ -38,7 +38,8 @@ class _FeaturesOptionAsyncState extends State<FeaturesOptionAsync> {
           ),
           choiceActiveStyle: S2ChoiceStyle(
             raised: true,
-            highlightColor: Theme.of(context).accentColor.withOpacity(.4),
+            highlightColor:
+                Theme.of(context).colorScheme.secondary.withOpacity(.4),
           ),
           choiceSecondaryBuilder: (context, state, choice) => CircleAvatar(
             backgroundImage: NetworkImage(choice.meta['picture']['thumbnail']),
@@ -229,9 +230,9 @@ class _FeaturesOptionAsyncState extends State<FeaturesOptionAsync> {
   }
 
   Future<List<S2Choice<String>>> _getCountries([String? query]) async {
-    final Map<String, dynamic> params = {
-      'fields': 'name;capital;region;subregion',
-    };
+    // final Map<String, dynamic> params = {
+    //   'fields': 'name;capital;region;subregion',
+    // };
     final String path = query == null ? 'all' : 'name/$query';
     final String url = "https://restcountries.com/v3.1/$path";
     final Response res = await Dio().get(url /*, queryParameters: params*/);

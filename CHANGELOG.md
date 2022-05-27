@@ -1,3 +1,6 @@
+## [6.2.0-beta]
+* flutter 3
+
 ## [6.1.2-beta]
 * expose more classes
 

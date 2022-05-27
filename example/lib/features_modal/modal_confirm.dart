@@ -78,18 +78,18 @@ class _FeaturesModalConfirmState extends State<FeaturesModalConfirm> {
               child: Row(
                 children: <Widget>[
                   const Spacer(),
-                  FlatButton(
+                  TextButton(
                     child: const Text('Cancel'),
                     onPressed: () => state.closeModal(confirmed: false),
                   ),
                   const SizedBox(width: 5),
-                  FlatButton(
+                  TextButton(
                     child: Text('OK (${state.selection?.length ?? 0})'),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    onPressed: (state.selection?.isValid ?? true)
-                        ? () => state.closeModal(confirmed: true)
-                        : null,
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
+                      textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(color: Colors.white)),
+                    ),
+                    onPressed: (state.selection?.isValid ?? true) ? () => state.closeModal(confirmed: true) : null,
                   ),
                 ],
               ),
@@ -129,10 +129,12 @@ class _FeaturesModalConfirmState extends State<FeaturesModalConfirm> {
             return Center(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                child: FlatButton(
+                child: TextButton(
                   child: const Text('Send'),
-                  color: Colors.redAccent,
-                  textColor: Colors.white,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.redAccent),
+                    textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(color: Colors.white)),
+                  ),
                   onPressed: () => state.closeModal(confirmed: true),
                 ),
               ),
