@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 import '../model/choice_item.dart';
 
 /// Function to return a single [S2Choice] from a single `value`
-typedef Future<S2Choice<T>> S2SingleSelectedResolver<T>(T value);
+typedef S2SingleSelectedResolver<T> = Future<S2Choice<T>> Function(T value);
 
 /// Function to return a `List` of [S2Choice] from a `List` of `value`
-typedef Future<List<S2Choice<T>>> S2MultiSelectedResolver<T>(List<T>? value);
+typedef S2MultiSelectedResolver<T> = Future<List<S2Choice<T>>> Function(List<T>? value);
 
 /// State of the selected choice
 abstract class S2Selected<T> extends ChangeNotifier {
@@ -83,6 +83,7 @@ abstract class S2Selected<T> extends ChangeNotifier {
   /// returns error message if is not valid,
   /// returns title if is valid and is not empty,
   /// returns placeholder if is valid and is empty.
+  @override
   String toString();
 
   /// Return a [Text] widget from [toString]
@@ -139,7 +140,7 @@ class S2SingleSelected<T> extends S2Selected<T> {
     try {
       _choice = await resolver?.call(_value);
     } catch (e) {
-      throw e;
+      rethrow;
     } finally {
       isResolving = false;
       validate();
@@ -223,6 +224,7 @@ class S2MultiSelected<T> extends S2Selected<T> {
   S2MultiSelectedResolver<T>? resolver;
 
   /// A function used to validate the selection
+  @override
   final S2Validation<List<S2Choice<T>>>? validation;
 
   /// a `String` to return in `toString` if the `title` is empty
@@ -251,7 +253,7 @@ class S2MultiSelected<T> extends S2Selected<T> {
     try {
       _choice = await resolver?.call(_value);
     } catch (e) {
-      throw e;
+      rethrow;
     } finally {
       isResolving = false;
       validate();

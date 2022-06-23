@@ -50,7 +50,7 @@ class S2Choices<T> extends ChangeNotifier {
     this.loader,
     this.delay,
     this.limit,
-  }) : this.preload = items;
+  }) : preload = items;
 
   /// Returns values of the choice items
   List<T>? get values {

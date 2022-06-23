@@ -84,7 +84,7 @@ class S2Tile<T> extends StatelessWidget {
   final Widget? body;
 
   /// Create a default trigger widget
-  S2Tile({
+  const S2Tile({
     Key? key,
     required this.value,
     required this.onTap,
@@ -134,18 +134,18 @@ class S2Tile<T> extends StatelessWidget {
         super(key: key);
 
   /// Returns default trailing widget
-  static const Widget defaultTrailing = const Icon(
+  static const Widget defaultTrailing = Icon(
     Icons.keyboard_arrow_right,
     color: Colors.grey,
   );
 
   /// Returns default loading indicator widget
-  static const Widget defaultLoadingIndicator = const SizedBox(
+  static const Widget defaultLoadingIndicator = SizedBox(
+    height: 16.0,
+    width: 16.0,
     child: CircularProgressIndicator(
       strokeWidth: 1.5,
     ),
-    height: 16.0,
-    width: 16.0,
   );
 
   @override
@@ -199,9 +199,7 @@ class S2Tile<T> extends StatelessWidget {
 
   Widget? get _trailingIconWidget {
     return isLoading != true
-        ? trailing != null
-            ? trailing
-            : S2Tile.defaultTrailing
+        ? trailing ?? S2Tile.defaultTrailing
         : S2Tile.defaultLoadingIndicator;
   }
 

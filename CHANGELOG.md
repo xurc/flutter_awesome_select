@@ -1,3 +1,6 @@
+## [6.4.0]
+* fix for https://github.com/artflutter/flutter_awesome_select/issues/17
+
 ## [6.3.0]
 * licence
 

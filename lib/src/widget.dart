@@ -29,19 +29,19 @@ import 'text.dart';
 import 'text_error.dart';
 
 /// Callback for event modal will close
-typedef Future<bool> S2ModalWillClose<T>(T state);
+typedef S2ModalWillClose<T> = Future<bool> Function(T state);
 
 /// Callback for event modal will open
-typedef Future<bool> S2ModalWillOpen<T>(T state);
+typedef S2ModalWillOpen<T> = Future<bool> Function(T state);
 
 /// Callback for event modal opened
-typedef void S2ModalOpen<T>(T state);
+typedef S2ModalOpen<T> = void Function(T state);
 
 /// Callback for event modal closed
-typedef void S2ModalClose<T>(T state, bool confirmed);
+typedef S2ModalClose<T> = void Function(T state, bool confirmed);
 
 /// Callback for event choice select
-typedef void S2ChoiceSelect<A, B>(A state, B choice);
+typedef S2ChoiceSelect<A, B> = void Function(A state, B choice);
 
 // /// Signature for callbacks that report that an underlying two value has changed.
 // typedef void TwoValueChanged<A, B>(A firstValue, B secondValue);
@@ -980,7 +980,7 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
             : theme.primaryTextTheme.headline6,
         iconTheme:
             widget.modalConfig.isFullPage != true ? theme.iconTheme : null,
-        errorStyle: TextStyle(
+        errorStyle: const TextStyle(
           fontSize: 13.5,
           fontWeight: FontWeight.w500,
         ),
@@ -1024,8 +1024,8 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
           ? Scaffold(
               backgroundColor: modalConfig.style.backgroundColor,
               appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(kToolbarHeight),
                 child: modalHeader!,
-                preferredSize: Size.fromHeight(kToolbarHeight),
               ),
               body: SafeArea(
                 maintainBottomViewPadding: true,
@@ -1045,29 +1045,29 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
     final _modalDivider = modalDivider;
     final _modalFooter = modalFooter;
 
-    final _widgets = <Widget>[];
+    final widgets = <Widget>[];
     if (!modalConfig.isFullPage && _modalHeader != null) {
-      _widgets.add(_modalHeader);
+      widgets.add(_modalHeader);
     }
     if (_modalDivider != null) {
-      _widgets.add(_modalDivider);
+      widgets.add(_modalDivider);
     }
-    _widgets.add(
+    widgets.add(
       Flexible(
         fit: modalConfig.isFullPage == true ? FlexFit.tight : FlexFit.loose,
         child: choiceList,
       ),
     );
     if (_modalDivider != null) {
-      _widgets.add(_modalDivider);
+      widgets.add(_modalDivider);
     }
     if (_modalFooter != null) {
-      _widgets.add(_modalFooter);
+      widgets.add(_modalFooter);
     }
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
-      children: _widgets,
+      children: widgets,
     );
   }
 
@@ -1079,8 +1079,8 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
 
   /// Returns the modal title widget
   Widget get modalTitle {
-    String _title = modalConfig.title ?? widget.title ?? widget.placeholder!;
-    return Container(child: Text(_title, style: modalHeaderStyle.textStyle));
+    String title = modalConfig.title ?? widget.title ?? widget.placeholder!;
+    return Container(child: Text(title, style: modalHeaderStyle.textStyle));
   }
 
   void modalErrorShake() {
@@ -1154,11 +1154,11 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
   Widget get defaultModalFilterToggle {
     return !filter!.activated
         ? IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () => filter!.show(modalContext),
           )
         : IconButton(
-            icon: Icon(Icons.clear),
+            icon: const Icon(Icons.clear),
             onPressed: () => filter!.hide(modalContext),
           );
   }
@@ -1206,7 +1206,6 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
             padding: modalConfig.confirmMargin ??
                 const EdgeInsets.fromLTRB(0, 0, 10, 0),
             child: TextButton(
-              child: modalConfig.confirmLabel!,
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color?>(
                     modalConfig.confirmIsDark
@@ -1220,6 +1219,7 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
                 ),
               ),
               onPressed: onPressed,
+              child: modalConfig.confirmLabel!,
             ),
           ),
         );
@@ -1284,14 +1284,14 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
 
   /// Returns the default modal actions widgets
   List<Widget> get defaultModalActions {
-    final _actions = <Widget>[];
+    final actions = <Widget>[];
     if (modalFilterToggle != null) {
-      _actions.add(modalFilterToggle!);
+      actions.add(modalFilterToggle!);
     }
     if (modalConfig.useConfirm && !filter!.activated) {
-      _actions.add(confirmButton);
+      actions.add(confirmButton);
     }
-    return _actions;
+    return actions;
   }
 
   /// Returns the choices selector widget
@@ -1393,11 +1393,11 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
                     }
 
                     return S2Pagination(
-                      child: ungroupedChoices(choices!.items),
                       reloadable: choices!.isAsync,
                       appendable: choiceConfig.pageLimit != null,
                       onReload: () => choices!.reload(query: filter?.value),
                       onAppend: () => choices!.append(query: filter?.value),
+                      child: ungroupedChoices(choices!.items),
                     );
                   },
                 ),
@@ -1442,13 +1442,11 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
 
   /// Returns the default grouped choices widget
   Widget defaultGroup(S2Group<T> group) {
-    final Widget _groupHeader = groupHeader(group);
-    final Widget _groupChoices = groupChoices(group);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        _groupHeader,
-        _groupChoices,
+        groupHeader(group),
+        groupChoices(group),
       ],
     );
   }
@@ -1509,8 +1507,8 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
       constraints: BoxConstraints(
         maxHeight: modalConfig.isPopupDialog ? 100 : double.infinity,
       ),
-      child: Center(
-        child: const SizedBox(
+      child: const Center(
+        child: SizedBox(
           height: 50,
           width: 50,
           child: CircularProgressIndicator(),
@@ -1606,12 +1604,14 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
   /// Function to close the choice modal
   void closeModal({bool confirmed = true}) {
     // pop the navigation
-    if (confirmed == true)
+    if (confirmed == true) {
       // will call the onWillPop
       Navigator.maybePop(context, true);
-    else
+    }
+    else {
       // no need to call the onWillPop
       Navigator.pop(context, false);
+    }
   }
 
   /// Function to show the choice modal
@@ -1691,8 +1691,9 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
   void didUpdateWidget(SmartSelect<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (!ListEquality().equals(oldWidget.choiceItems, widget.choiceItems))
+    if (!const ListEquality().equals(oldWidget.choiceItems, widget.choiceItems)) {
       resolveChoices();
+    }
   }
 
   @override
@@ -2132,20 +2133,20 @@ class S2MultiState<T> extends S2State<T> {
   }
 
   @override
-  Widget choiceSelector(List<S2Choice<T>>? choices) {
+  Widget choiceSelector(List<S2Choice<T>>? values) {
     return Checkbox(
       activeColor: choiceActiveStyle?.color ?? defaultActiveChoiceStyle.color,
-      value: selection!.hasAll(choices!)
+      value: selection!.hasAll(values!)
           ? true
-          : selection!.hasAny(choices)
+          : selection!.hasAny(values)
               ? null
               : false,
       tristate: true,
       onChanged: (value) {
         if (value == true) {
-          selection!.merge(choices);
+          selection!.merge(values);
         } else {
-          selection!.omit(choices);
+          selection!.omit(values);
         }
       },
     );

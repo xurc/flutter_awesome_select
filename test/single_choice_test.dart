@@ -115,12 +115,13 @@ void testSmartSelect<T>({
     await tester.pumpAndSettle();
 
     final modalFinder = find.byWidgetPredicate((widget) {
-      if (modalType == S2ModalType.popupDialog)
+      if (modalType == S2ModalType.popupDialog) {
         return widget is Dialog;
-      else if (modalType == S2ModalType.bottomSheet)
+      } else if (modalType == S2ModalType.bottomSheet) {
         return widget is BottomSheet;
-      else
+      } else {
         return widget is Scaffold;
+      }
     });
     expect(
       modalFinder,
@@ -129,10 +130,11 @@ void testSmartSelect<T>({
     );
 
     final choiceWrapperFinder = find.byWidgetPredicate((widget) {
-      if (choiceType == S2ChoiceType.chips)
+      if (choiceType == S2ChoiceType.chips) {
         return widget is Wrap;
-      else
+      } else {
         return widget is ListView;
+      }
     });
     expect(
       choiceWrapperFinder,
@@ -141,21 +143,22 @@ void testSmartSelect<T>({
     );
 
     final choiceItemsFinder = find.byWidgetPredicate((widget) {
-      if (choiceType == S2ChoiceType.radios)
+      if (choiceType == S2ChoiceType.radios) {
         return widget is RadioListTile;
-      else if (choiceType == S2ChoiceType.chips)
+      } else if (choiceType == S2ChoiceType.chips) {
         return widget is RawChip;
-      else if (choiceType == S2ChoiceType.switches)
+      } else if (choiceType == S2ChoiceType.switches) {
         return widget is SwitchListTile;
-      else
+      } else {
         return widget is Card;
+      }
     });
     expect(
       choiceItemsFinder,
       findsNWidgets(choiceItems.length),
       reason: 'List of choice items displayed',
     );
-    print(choiceToSelect.value);
+    debugPrint(choiceToSelect.value.toString());
     final choiceToSelectFinder = find.byKey(ValueKey<T>(choiceToSelect.value));
     expect(
       choiceToSelectFinder,
