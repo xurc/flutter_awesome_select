@@ -51,8 +51,8 @@ class _FeaturesOptionAsyncState extends State<FeaturesOptionAsync> {
               isLoading: _usersIsLoading,
               leading: Builder(
                 builder: (context) {
-                  String avatarUrl = state.selected?.choice != null
-                      ? state.selected?.choice?.meta['picture']['thumbnail']
+                  String avatarUrl = state.selected.choice != null
+                      ? state.selected.choice?.meta['picture']['thumbnail']
                       : 'https://source.unsplash.com/8I-ht65iRww/100x100';
                   return CircleAvatar(
                     backgroundImage: NetworkImage(avatarUrl),

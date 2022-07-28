@@ -126,8 +126,10 @@ class _FeaturesModalValidationState extends State<FeaturesModalValidation> {
                     icon: Icon(Icons.check),
                     label: Text('OK (${state.selection?.length ?? 0})'),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
-                      textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(color: Colors.white)),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Theme.of(context).primaryColor),
+                      textStyle: MaterialStateProperty.all<TextStyle>(
+                          TextStyle(color: Colors.white)),
                     ),
                     onPressed: (state.selection?.isValid ?? true)
                         ? () => state.closeModal(confirmed: true)

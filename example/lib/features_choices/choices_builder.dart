@@ -75,7 +75,7 @@ class _FeaturesChoicesBuilderState extends State<FeaturesChoicesBuilder> {
             );
           },
           tileBuilder: (context, state) {
-            String avatar = (state.selected?.choice?.meta ?? {})['image'] ??
+            String avatar = (state.selected.choice?.meta ?? {})['image'] ??
                 'https://source.unsplash.com/3k5cAmxjXl4/100x100';
             return S2Tile.fromState(
               state,

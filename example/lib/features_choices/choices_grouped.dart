@@ -38,7 +38,7 @@ class _FeaturesChoicesGroupedState extends State<FeaturesChoicesGrouped> {
           tileBuilder: (context, state) {
             return S2Tile<dynamic>(
               title: state.titleWidget,
-              value: state.selected?.toWidget() ?? Container(),
+              value: state.selected.toWidget(),
               onTap: state.showModal,
               isTwoLine: true,
               leading: const CircleAvatar(

@@ -85,12 +85,10 @@ class S2ChipTheme extends StatelessWidget {
     final defaultLabelStyle = Theme.of(context).chipTheme.labelStyle;
     final primaryLabelStyle =
         defaultLabelStyle?.merge(labelStyle).copyWith(color: foregroundColor);
-    final selectedLabelStyle = defaultLabelStyle
-        ?.merge(labelStyle)
-        .copyWith(
-            color: raised == true
-                ? Colors.white
-                : secondaryColor.withAlpha(foregroundAlpha));
+    final selectedLabelStyle = defaultLabelStyle?.merge(labelStyle).copyWith(
+        color: raised == true
+            ? Colors.white
+            : secondaryColor.withAlpha(foregroundAlpha));
 
     final ShapeBorder? chipShapeRaised =
         raised == true ? const StadiumBorder() : null;

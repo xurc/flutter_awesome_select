@@ -5,7 +5,8 @@ import 'choice_item.dart';
 typedef S2SingleSelectedResolver<T> = Future<S2Choice<T>?> Function(T value);
 
 /// Function to return a `List` of [S2Choice] from a `List` of `value`
-typedef S2MultiSelectedResolver<T> = Future<List<S2Choice<T>>?> Function(List<T>? value);
+typedef S2MultiSelectedResolver<T> = Future<List<S2Choice<T>>?> Function(
+    List<T>? value);
 
 /// Chosen data class
 abstract class S2ChosenData<T> {

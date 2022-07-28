@@ -47,7 +47,7 @@ class _FeaturesBrightnessState extends State<FeaturesBrightness> {
       },
       tileBuilder: (context, state) {
         return IconButton(
-          icon: Icon(modes[state.selected?.value ?? 0].meta),
+          icon: Icon(modes[state.selected.value].meta),
           onPressed: state.showModal,
         );
       },

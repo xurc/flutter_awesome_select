@@ -74,12 +74,12 @@ void testSmartSelect<T>({
 
     final s2State = tester.state<S2SingleState<T>>(s2Finder);
     expect(
-      s2State.selected!.choice,
+      s2State.selected.choice,
       initialChoice,
       reason: 'Initial choice is correct',
     );
     expect(
-      s2State.selected!.value,
+      s2State.selected.value,
       initialChoice?.value,
       reason: 'Initial value is correct',
     );
@@ -172,7 +172,7 @@ void testSmartSelect<T>({
     await tester.pumpAndSettle();
 
     expect(
-      s2State.selected!.choice,
+      s2State.selected.choice,
       choiceToSelect,
       reason: 'New selected choice to internal choice is correct',
     );
@@ -183,7 +183,7 @@ void testSmartSelect<T>({
     );
 
     expect(
-      s2State.selected!.value,
+      s2State.selected.value,
       choiceToSelect.value,
       reason: 'New selected value to internal value is correct',
     );

@@ -1,6 +1,10 @@
 library flutter_awesome_select;
 
-export 'src/widget.dart';
+export 'src/widget/s2_multiple_state.dart';
+export 'src/widget/s2_single_state.dart';
+export 'src/widget/smart_select.dart';
+export 'src/widget/s2_state.dart';
+export 'src/widget/typedefs.dart';
 export 'src/text.dart';
 export 'src/group_header.dart';
 export 'src/model/builder.dart';

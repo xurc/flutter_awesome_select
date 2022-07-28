@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 // import '../state/filter.dart';
-import '../widget.dart';
-import 'choice_item.dart';
-import 'group_data.dart';
 
 /// A common widget builder
 typedef S2WidgetBuilder<T> = Widget Function(
