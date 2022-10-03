@@ -1,3 +1,7 @@
+## [Next]
+* Fixes issue #3 list items are not refreshed when the items’ source e.g. a change notifier Provider sends an updated list.
+* Corrects spelling mistakes in documentation.
+
 ## [6.5.0-beta]
 * type fixes
 

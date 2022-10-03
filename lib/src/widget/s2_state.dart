@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_awesome_select/flutter_awesome_select.dart';
 import '../state/choices.dart';
 import '../state/filter.dart';
-// import 'state/selected.dart';
-// import 'state/selection.dart';
 import '../choices_resolver.dart';
 import '../utils/debouncer.dart';
 import '../choices_list.dart';
@@ -855,6 +853,10 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
     if (!const ListEquality()
         .equals(oldWidget.choiceItems, widget.choiceItems)) {
       resolveChoices();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        choices?.reload();
+        modalSetState?.call(() {});
+      });
     }
   }
 
