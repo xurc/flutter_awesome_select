@@ -1,6 +1,7 @@
 ## [Next]
 * Fixes issue #3 list items are not refreshed when the items’ source e.g. a change notifier Provider sends an updated list.
 * Corrects spelling mistakes in documentation.
+* Fixes #27 A S2Filter was used after being disposed
 
 ## [6.5.0-beta]
 * type fixes
