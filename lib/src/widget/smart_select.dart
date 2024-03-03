@@ -283,7 +283,7 @@ class SmartSelect<T> extends StatefulWidget {
   ///
   /// The [groupConfig] is a configuration to customize grouped widget.
   ///
-  /// The [groupEnabled] is shortcut to [groupConfig.enabled], alterative to [choiceGrouped],
+  /// The [groupEnabled] is shortcut to [groupConfig.enabled], alternative to [choiceGrouped],
   /// whether the choices list is grouped or not, based on [S2Choice.group].
   ///
   /// The [groupSelector] is shortcut to [groupConfig.useSelector],
@@ -607,7 +607,7 @@ class SmartSelect<T> extends StatefulWidget {
   ///
   /// The [groupConfig] is a configuration to customize grouped widget.
   ///
-  /// The [groupEnabled] is shortcut to [groupConfig.enabled], alterative to [choiceGrouped],
+  /// The [groupEnabled] is shortcut to [groupConfig.enabled], alternative to [choiceGrouped],
   /// whether the choices list is grouped or not, based on [S2Choice.group].
   ///
   /// The [groupSelector] is shortcut to [groupConfig.useSelector],
