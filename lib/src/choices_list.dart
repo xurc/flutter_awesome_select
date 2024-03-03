@@ -5,6 +5,8 @@ import 'scrollbar.dart';
 
 /// Choices list widget
 class S2ChoicesList<T> extends StatelessWidget {
+  final scrollController = ScrollController();
+
   /// the length of the choice list
   final int itemLength;
 
@@ -18,7 +20,7 @@ class S2ChoicesList<T> extends StatelessWidget {
   final S2ChoiceConfig config;
 
   /// Default constructor
-  const S2ChoicesList({
+  S2ChoicesList({
     Key? key,
     required this.itemLength,
     required this.itemBuilder,
@@ -31,6 +33,7 @@ class S2ChoicesList<T> extends StatelessWidget {
     Widget result = NotificationListener<ScrollNotification>(
       onNotification: (notification) => false,
       child: Scrollbar(
+        controller: scrollController,
         child: config.isWrapLayout
             ? _listWrap(context)
             : config.isGridLayout
@@ -41,13 +44,12 @@ class S2ChoicesList<T> extends StatelessWidget {
       ),
     );
 
-    return config.direction == Axis.horizontal
-        ? Wrap(children: <Widget>[result])
-        : result;
+    return config.direction == Axis.horizontal ? Wrap(children: <Widget>[result]) : result;
   }
 
   Widget _listWrap(BuildContext context) {
     return SingleChildScrollView(
+      controller: scrollController,
       physics: config.physics,
       scrollDirection: config.direction,
       padding: config.padding ??
@@ -71,6 +73,7 @@ class S2ChoicesList<T> extends StatelessWidget {
 
   Widget _listDefault() {
     return ListView.builder(
+      controller: scrollController,
       shrinkWrap: true,
       physics: config.physics,
       scrollDirection: config.direction,
@@ -82,6 +85,7 @@ class S2ChoicesList<T> extends StatelessWidget {
 
   Widget _listSeparated() {
     return ListView.separated(
+      controller: scrollController,
       shrinkWrap: true,
       physics: config.physics,
       scrollDirection: config.direction,
@@ -94,6 +98,7 @@ class S2ChoicesList<T> extends StatelessWidget {
 
   Widget _listGrid() {
     return GridView.builder(
+      controller: scrollController,
       shrinkWrap: true,
       physics: config.physics,
       scrollDirection: config.direction,

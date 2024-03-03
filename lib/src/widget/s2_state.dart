@@ -592,8 +592,12 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
 
   /// Returns the grouped choice items widget
   Widget groupedChoices(List<S2Group<T>> groups) {
+    final scrollController = ScrollController();
+
     return Scrollbar(
+      controller: scrollController,
       child: ListView.builder(
+        controller: scrollController,
         itemCount: groups.length,
         itemBuilder: (_, int i) {
           return customGroup(groups[i]) ?? defaultGroup(groups[i]);
