@@ -1,3 +1,6 @@
+## [Next]
+* Fixes #27 A S2Filter was used after being disposed
+
 ## [6.5.0-beta]
 * type fixes
 

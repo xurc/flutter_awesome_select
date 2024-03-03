@@ -15,10 +15,13 @@ class S2Filter extends ChangeNotifier {
   /// Returns the current filter value
   String? get value => _value;
 
+  bool _disposed = false;
+
   @override
   void dispose() {
     // Clean up the filter controller when the widget is disposed.
     ctrl.dispose();
+    _disposed = true;
     super.dispose();
   }
 
@@ -58,6 +61,6 @@ class S2Filter extends ChangeNotifier {
   /// Apply new value to filter query
   void apply(String? val) {
     _value = val;
-    notifyListeners();
+    if (!_disposed) notifyListeners();
   }
 }
