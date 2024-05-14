@@ -1,15 +1,16 @@
 import 'package:collection/collection.dart' show ListEquality;
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_select/flutter_awesome_select.dart';
-import '../state/choices.dart';
-import '../state/filter.dart';
-import '../choices_resolver.dart';
-import '../utils/debouncer.dart';
-import '../choices_list.dart';
+
 import '../choices_empty.dart';
+import '../choices_list.dart';
+import '../choices_resolver.dart';
 import '../modal.dart';
 import '../pagination.dart';
+import '../state/choices.dart';
+import '../state/filter.dart';
 import '../text_error.dart';
+import '../utils/debouncer.dart';
 
 /// Smart Select State
 abstract class S2State<T> extends State<SmartSelect<T>> {
@@ -138,8 +139,8 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
         backgroundColor:
             widget.modalConfig.isFullPage != true ? theme.cardColor : null,
         textStyle: widget.modalConfig.isFullPage != true
-            ? theme.textTheme.headline6
-            : theme.primaryTextTheme.headline6,
+            ? theme.textTheme.headlineSmall
+            : theme.primaryTextTheme.headlineSmall,
         iconTheme:
             widget.modalConfig.isFullPage != true ? theme.iconTheme : null,
         errorStyle: const TextStyle(
@@ -575,12 +576,12 @@ abstract class S2State<T> extends State<SmartSelect<T>> {
       itemBuilder: (context, i) {
         return choices!.isAppending && i == choiceList.length
             ? const Center(
-              child: SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(),
-              ),
-            )
+                child: SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(),
+                ),
+              )
             : choiceListBuilder(choiceList[i])!;
       },
       dividerBuilder: builder.choiceDivider,
