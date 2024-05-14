@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme_patrol2/theme_patrol2.dart';
+
 import 'features.dart';
 
 void main() => runApp(MyApp());
@@ -22,7 +23,6 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.red,
         colorScheme: ColorScheme.dark(secondary: Colors.red),
         // accentColor: Colors.red,
-        toggleableActiveColor: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       mode: ThemeMode.system,
